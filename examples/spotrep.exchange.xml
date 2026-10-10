@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tng:SpotReport xmlns:tng="urn:truenorthtak:gateway:exchange:1">
+  <tng:MessageHeader>
+    <tng:MessageDefinitionIdentifier>SPOTREP</tng:MessageDefinitionIdentifier>
+    <tng:MessageDefinitionVersionNumber>1</tng:MessageDefinitionVersionNumber>
+    <tng:OriginatorCallSignText>RECCE31</tng:OriginatorCallSignText>
+    <tng:MessageSerialNumber>7</tng:MessageSerialNumber>
+    <tng:MessageDateTime>2026-10-10T18:45:00Z</tng:MessageDateTime>
+    <tng:MessagePrecedenceCode>PRIORITY</tng:MessagePrecedenceCode>
+  </tng:MessageHeader>
+  <tng:ObservedQuantity>4</tng:ObservedQuantity>
+  <tng:ActivityDescriptionText>MOVING NORTH ON MSR TORONTO AT 30 KMH</tng:ActivityDescriptionText>
+  <tng:ObservedLocation>
+    <tng:LatitudeDegreeValue>45.88761</tng:LatitudeDegreeValue>
+    <tng:LongitudeDegreeValue>-77.29010</tng:LongitudeDegreeValue>
+  </tng:ObservedLocation>
+  <tng:AffiliationCode>H</tng:AffiliationCode>
+  <tng:UnitIdentificationText>UNKNOWN MECHANIZED ELEMENT</tng:UnitIdentificationText>
+  <tng:ObservationDateTime>2026-10-10T18:31:00Z</tng:ObservationDateTime>
+  <tng:EquipmentDescriptionText>2X WHEELED APC, 2X LIGHT TRUCK</tng:EquipmentDescriptionText>
+</tng:SpotReport>

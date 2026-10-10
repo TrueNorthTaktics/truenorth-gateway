@@ -1,0 +1,18 @@
+// Core targets Java 11 bytecode with no runtime dependencies so it can be
+// embedded unchanged in an ATAK (Android) plugin.
+subprojects {
+    apply plugin: 'java'
+
+    group = 'ca.truenorthtak'
+    version = '0.1.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.release = 11
+        options.encoding = 'UTF-8'
+        options.compilerArgs << '-Xlint:all'
+    }
+}

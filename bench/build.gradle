@@ -1,0 +1,16 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':core')
+}
+
+application {
+    mainClass = 'ca.truenorthtak.gateway.bench.Bench'
+}
+
+run {
+    // Writes results/, examples/ and schema/ at the repository root.
+    args = [rootProject.projectDir.absolutePath, '10000']
+}

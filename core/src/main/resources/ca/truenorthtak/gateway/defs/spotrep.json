@@ -1,0 +1,28 @@
+{
+  "id": "SPOTREP",
+  "version": 1,
+  "code": 2,
+  "title": "Spot Report, SALUTE format (representative)",
+  "xmlName": "SpotReport",
+  "cotType": "a-u-G",
+  "pointField": "location",
+  "defaultPrecedence": "PRIORITY",
+  "fields": [
+    { "name": "size", "set": "SIZE", "xml": "ObservedQuantity", "type": "INT", "min": 0, "max": 9999,
+      "label": "Size - number of personnel or vehicles" },
+    { "name": "activity", "set": "ACTY", "xml": "ActivityDescriptionText", "type": "TEXT", "max": 60,
+      "label": "Activity" },
+    { "name": "location", "set": "LOCN", "xml": "ObservedLocation", "type": "POSITION",
+      "label": "Location" },
+    { "name": "affiliation", "set": "LOCN", "xml": "AffiliationCode", "type": "ENUM",
+      "label": "Assessed affiliation",
+      "codes": [ {"code": "H", "label": "Hostile"}, {"code": "S", "label": "Suspect"},
+                 {"code": "U", "label": "Unknown"}, {"code": "N", "label": "Neutral"} ] },
+    { "name": "unit", "set": "UNIT", "xml": "UnitIdentificationText", "type": "TEXT", "max": 40, "required": false,
+      "label": "Unit or identification" },
+    { "name": "observedTime", "set": "TIME", "xml": "ObservationDateTime", "type": "DTG",
+      "label": "Time observed" },
+    { "name": "equipment", "set": "EQPT", "xml": "EquipmentDescriptionText", "type": "TEXT", "max": 60, "required": false,
+      "label": "Equipment" }
+  ]
+}

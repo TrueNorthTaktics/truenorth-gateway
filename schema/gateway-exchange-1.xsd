@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated from message definitions. Representative exchange model; not an official NIEM/MTF schema. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tng="urn:truenorthtak:gateway:exchange:1"
+           targetNamespace="urn:truenorthtak:gateway:exchange:1"
+           elementFormDefault="qualified">
+
+  <xs:complexType name="MessageHeaderType">
+    <xs:sequence>
+      <xs:element name="MessageDefinitionIdentifier" type="xs:token"/>
+      <xs:element name="MessageDefinitionVersionNumber" type="xs:unsignedByte"/>
+      <xs:element name="OriginatorCallSignText" type="tng:CallSignTextType"/>
+      <xs:element name="MessageSerialNumber" type="xs:unsignedShort"/>
+      <xs:element name="MessageDateTime" type="xs:dateTime"/>
+      <xs:element name="MessagePrecedenceCode" type="tng:PrecedenceCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CallSignTextType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="12"/>
+      <xs:pattern value="[&#x20;-&#x2E;&#x30;-&#x5F;]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PrecedenceCodeType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="ROUTINE"/>
+      <xs:enumeration value="PRIORITY"/>
+      <xs:enumeration value="IMMEDIATE"/>
+      <xs:enumeration value="FLASH"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="GeoPointType">
+    <xs:sequence>
+      <xs:element name="LatitudeDegreeValue">
+        <xs:simpleType><xs:restriction base="xs:decimal"><xs:fractionDigits value="5"/><xs:minInclusive value="-90"/><xs:maxInclusive value="90"/></xs:restriction></xs:simpleType>
+      </xs:element>
+      <xs:element name="LongitudeDegreeValue">
+        <xs:simpleType><xs:restriction base="xs:decimal"><xs:fractionDigits value="5"/><xs:minInclusive value="-180"/><xs:maxInclusive value="180"/></xs:restriction></xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- MEDEVAC9 v1: 9-Line MEDEVAC Request (representative) -->
+  <xs:element name="MedicalEvacuationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MessageHeader" type="tng:MessageHeaderType"/>
+        <xs:element name="PickupLocation" type="tng:GeoPointType" minOccurs="1"/>
+        <xs:element name="RadioFrequencyValue" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:decimal"><xs:fractionDigits value="3"/><xs:minInclusive value="0"/><xs:maxInclusive value="9999"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="CallSignText" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="12"/><xs:pattern value="[&#x20;-&#x2E;&#x30;-&#x5F;]*"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="PatientPrecedenceCount" minOccurs="1" maxOccurs="5">
+          <xs:complexType><xs:sequence>
+            <xs:element name="CategoryCode"><xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="A"/><xs:enumeration value="B"/><xs:enumeration value="C"/><xs:enumeration value="D"/><xs:enumeration value="E"/></xs:restriction></xs:simpleType></xs:element>
+            <xs:element name="Quantity"><xs:simpleType><xs:restriction base="xs:int"><xs:minInclusive value="1"/><xs:maxInclusive value="31"/></xs:restriction></xs:simpleType></xs:element>
+          </xs:sequence></xs:complexType>
+        </xs:element>
+        <xs:element name="SpecialEquipmentCode" minOccurs="1" maxOccurs="4">
+          <xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="A"/><xs:enumeration value="B"/><xs:enumeration value="C"/><xs:enumeration value="D"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="PatientTypeCount" minOccurs="1" maxOccurs="2">
+          <xs:complexType><xs:sequence>
+            <xs:element name="CategoryCode"><xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="L"/><xs:enumeration value="A"/></xs:restriction></xs:simpleType></xs:element>
+            <xs:element name="Quantity"><xs:simpleType><xs:restriction base="xs:int"><xs:minInclusive value="1"/><xs:maxInclusive value="31"/></xs:restriction></xs:simpleType></xs:element>
+          </xs:sequence></xs:complexType>
+        </xs:element>
+        <xs:element name="PickupSiteSecurityCode" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="N"/><xs:enumeration value="P"/><xs:enumeration value="E"/><xs:enumeration value="X"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="PickupSiteMarkingCode" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="A"/><xs:enumeration value="B"/><xs:enumeration value="C"/><xs:enumeration value="D"/><xs:enumeration value="E"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="PatientStatusCount" minOccurs="1" maxOccurs="5">
+          <xs:complexType><xs:sequence>
+            <xs:element name="CategoryCode"><xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="A"/><xs:enumeration value="B"/><xs:enumeration value="C"/><xs:enumeration value="D"/><xs:enumeration value="E"/></xs:restriction></xs:simpleType></xs:element>
+            <xs:element name="Quantity"><xs:simpleType><xs:restriction base="xs:int"><xs:minInclusive value="1"/><xs:maxInclusive value="31"/></xs:restriction></xs:simpleType></xs:element>
+          </xs:sequence></xs:complexType>
+        </xs:element>
+        <xs:element name="CBRNContaminationCode" minOccurs="0">
+          <xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="C"/><xs:enumeration value="B"/><xs:enumeration value="R"/><xs:enumeration value="N"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="RemarksText" minOccurs="0">
+          <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="80"/><xs:pattern value="[&#x20;-&#x2E;&#x30;-&#x5F;]*"/></xs:restriction></xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- SPOTREP v1: Spot Report, SALUTE format (representative) -->
+  <xs:element name="SpotReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MessageHeader" type="tng:MessageHeaderType"/>
+        <xs:element name="ObservedQuantity" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:long"><xs:minInclusive value="0"/><xs:maxInclusive value="9999"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="ActivityDescriptionText" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="60"/><xs:pattern value="[&#x20;-&#x2E;&#x30;-&#x5F;]*"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="ObservedLocation" type="tng:GeoPointType" minOccurs="1"/>
+        <xs:element name="AffiliationCode" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:token"><xs:enumeration value="H"/><xs:enumeration value="S"/><xs:enumeration value="U"/><xs:enumeration value="N"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="UnitIdentificationText" minOccurs="0">
+          <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="40"/><xs:pattern value="[&#x20;-&#x2E;&#x30;-&#x5F;]*"/></xs:restriction></xs:simpleType>
+        </xs:element>
+        <xs:element name="ObservationDateTime" minOccurs="1">
+          <xs:simpleType><xs:restriction base="xs:dateTime"/></xs:simpleType>
+        </xs:element>
+        <xs:element name="EquipmentDescriptionText" minOccurs="0">
+          <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="60"/><xs:pattern value="[&#x20;-&#x2E;&#x30;-&#x5F;]*"/></xs:restriction></xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

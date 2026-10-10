@@ -1,0 +1,8 @@
+TrueNorth Gateway
+Copyright (c) 2026 True North Taktics Inc. All rights reserved.
+
+This source code is made available for evaluation purposes only. No licence to
+use, copy, modify or distribute it is granted except by written agreement with
+True North Taktics Inc.
+
+Test-only dependency: JUnit 4.13.2, Eclipse Public License 1.0.

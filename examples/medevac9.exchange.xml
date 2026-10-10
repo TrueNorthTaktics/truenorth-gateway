@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tng:MedicalEvacuationRequest xmlns:tng="urn:truenorthtak:gateway:exchange:1">
+  <tng:MessageHeader>
+    <tng:MessageDefinitionIdentifier>MEDEVAC9</tng:MessageDefinitionIdentifier>
+    <tng:MessageDefinitionVersionNumber>1</tng:MessageDefinitionVersionNumber>
+    <tng:OriginatorCallSignText>BRAVO22</tng:OriginatorCallSignText>
+    <tng:MessageSerialNumber>42</tng:MessageSerialNumber>
+    <tng:MessageDateTime>2026-10-10T18:45:00Z</tng:MessageDateTime>
+    <tng:MessagePrecedenceCode>IMMEDIATE</tng:MessagePrecedenceCode>
+  </tng:MessageHeader>
+  <tng:PickupLocation>
+    <tng:LatitudeDegreeValue>45.90123</tng:LatitudeDegreeValue>
+    <tng:LongitudeDegreeValue>-77.31234</tng:LongitudeDegreeValue>
+  </tng:PickupLocation>
+  <tng:RadioFrequencyValue>30.125</tng:RadioFrequencyValue>
+  <tng:CallSignText>MEDIC21</tng:CallSignText>
+  <tng:PatientPrecedenceCount>
+    <tng:CategoryCode>A</tng:CategoryCode>
+    <tng:Quantity>2</tng:Quantity>
+  </tng:PatientPrecedenceCount>
+  <tng:PatientPrecedenceCount>
+    <tng:CategoryCode>C</tng:CategoryCode>
+    <tng:Quantity>1</tng:Quantity>
+  </tng:PatientPrecedenceCount>
+  <tng:SpecialEquipmentCode>B</tng:SpecialEquipmentCode>
+  <tng:SpecialEquipmentCode>D</tng:SpecialEquipmentCode>
+  <tng:PatientTypeCount>
+    <tng:CategoryCode>L</tng:CategoryCode>
+    <tng:Quantity>2</tng:Quantity>
+  </tng:PatientTypeCount>
+  <tng:PatientTypeCount>
+    <tng:CategoryCode>A</tng:CategoryCode>
+    <tng:Quantity>1</tng:Quantity>
+  </tng:PatientTypeCount>
+  <tng:PickupSiteSecurityCode>P</tng:PickupSiteSecurityCode>
+  <tng:PickupSiteMarkingCode>C</tng:PickupSiteMarkingCode>
+  <tng:PatientStatusCount>
+    <tng:CategoryCode>A</tng:CategoryCode>
+    <tng:Quantity>3</tng:Quantity>
+  </tng:PatientStatusCount>
+  <tng:RemarksText>LZ GREEN SMOKE. 1X CASUALTY REQUIRES VENTILATOR.</tng:RemarksText>
+</tng:MedicalEvacuationRequest>
