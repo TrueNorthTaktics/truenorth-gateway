@@ -33,6 +33,8 @@ Every decoder validates its input fully, and malformed input raises `ValidationE
 }
 ```
 
+`title` and every `label` may be a plain string (English) or an object of language tags, for example `{"en": "Remarks", "fr": "Remarques"}`. The built-in definitions carry English and French; `label(lang)` falls back to English.
+
 | Type | Canonical value | Limits |
 |---|---|---|
 | `POSITION` | lat/lon in 1e-5 degrees (about 1.1 m) | – |

@@ -15,7 +15,10 @@ public final class MessageDef {
     public final int version;
     /** One-byte identifier used by the compact binary codec. */
     public final int code;
+    /** English title (the default). */
     public final String title;
+    /** Titles by language tag. */
+    public final Map<String, String> titles;
     /** Root element name in the XML exchange format. */
     public final String xmlName;
     /** Cursor-on-Target event type. */
@@ -29,12 +32,21 @@ public final class MessageDef {
 
     public MessageDef(String id, int version, int code, String title, String xmlName, String cotType,
                       String pointField, Precedence defaultPrecedence, List<FieldDef> fields) {
+        this(id, version, code, Collections.singletonMap("en", title), xmlName, cotType, pointField,
+                defaultPrecedence, fields);
+    }
+
+    public MessageDef(String id, int version, int code, Map<String, String> titles, String xmlName, String cotType,
+                      String pointField, Precedence defaultPrecedence, List<FieldDef> fields) {
         if (code < 0 || code > 255) throw new ValidationException(id + ": code must be 0..255");
         if (version < 0 || version > 15) throw new ValidationException(id + ": version must be 0..15");
         this.id = id;
         this.version = version;
         this.code = code;
-        this.title = title;
+        Map<String, String> tm = new LinkedHashMap<>(titles);
+        if (!tm.containsKey("en")) tm.put("en", id);
+        this.titles = Collections.unmodifiableMap(tm);
+        this.title = this.titles.get("en");
         this.xmlName = xmlName;
         this.cotType = cotType;
         this.pointField = pointField;
@@ -58,6 +70,12 @@ public final class MessageDef {
                 throw new ValidationException(id + ": pointField must name a required POSITION field");
             }
         }
+    }
+
+    /** Title in the requested language, falling back to English. */
+    public String title(String lang) {
+        String t = titles.get(lang);
+        return t == null ? title : t;
     }
 
     public FieldDef field(String name) {

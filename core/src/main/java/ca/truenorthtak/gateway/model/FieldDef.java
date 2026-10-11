@@ -18,7 +18,10 @@ public final class FieldDef {
     public final String xml;
     public final FieldType type;
     public final boolean required;
+    /** English label (the default). */
     public final String label;
+    /** Labels by language tag, for example "en" and "fr". */
+    public final Map<String, String> labels;
     /** TEXT: maximum length. INT/DECIMAL: maximum value. COUNTS: maximum count per code. */
     public final long max;
     /** INT/DECIMAL: minimum value. */
@@ -29,16 +32,32 @@ public final class FieldDef {
 
     public FieldDef(String name, String set, String xml, FieldType type, boolean required, String label,
                     long min, long max, int scale, List<CodeDef> codes) {
+        this(name, set, xml, type, required, label == null ? null : Collections.singletonMap("en", label),
+                min, max, scale, codes);
+    }
+
+    public FieldDef(String name, String set, String xml, FieldType type, boolean required, Map<String, String> labels,
+                    long min, long max, int scale, List<CodeDef> codes) {
         this.name = name;
         this.set = set;
         this.xml = xml;
         this.type = type;
         this.required = required;
-        this.label = label == null ? name : label;
+        Map<String, String> lm = new LinkedHashMap<>();
+        if (labels != null) lm.putAll(labels);
+        if (!lm.containsKey("en")) lm.put("en", name);
+        this.labels = Collections.unmodifiableMap(lm);
+        this.label = this.labels.get("en");
         this.min = min;
         this.max = max;
         this.scale = scale;
         this.codes = codes == null ? Collections.<CodeDef>emptyList() : Collections.unmodifiableList(new ArrayList<>(codes));
+    }
+
+    /** Label in the requested language, falling back to English. */
+    public String label(String lang) {
+        String l = labels.get(lang);
+        return l == null ? label : l;
     }
 
     public int codeIndex(String code) {

@@ -44,7 +44,7 @@ Full output: [`results/BENCHMARK.md`](results/BENCHMARK.md). It is reproducible 
 | 30% | 3.7% | **98.1%** |
 | 40% | 1.0% | **86.7%** |
 
-**Processing cost:** encoding and decoding take under 0.25 ms per message on a desktop JVM, which is light enough for a handset.
+**Processing cost:** encoding and decoding take under 1 ms per message on a desktop JVM, which is light enough for a handset.
 
 ## Architecture in one picture
 
@@ -83,7 +83,7 @@ for (byte[] f : received) { byte[] p = r.accept(f); if (p != null) payload = p; 
 Requires JDK 11 or newer.
 
 ```bash
-./gradlew build          # compile + 14 unit tests
+./gradlew build          # compile + 17 unit tests
 ./gradlew :bench:run     # regenerate results/, examples/ and schema/
 ```
 

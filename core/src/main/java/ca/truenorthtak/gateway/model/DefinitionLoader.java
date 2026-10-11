@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +29,9 @@ public final class DefinitionLoader {
                     if (c instanceof Map) {
                         @SuppressWarnings("unchecked")
                         Map<String, Object> cm = (Map<String, Object>) c;
-                        codes.add(new CodeDef(str(cm, "code", null), str(cm, "label", null)));
+                        codes.add(new CodeDef(str(cm, "code", null), labels(cm.get("label"), null)));
                     } else {
-                        codes.add(new CodeDef(c.toString(), null));
+                        codes.add(new CodeDef(c.toString(), (String) null));
                     }
                 }
             }
@@ -41,7 +42,7 @@ public final class DefinitionLoader {
                     str(f, "xml", Character.toUpperCase(name.charAt(0)) + name.substring(1)),
                     type,
                     bool(f, "required", true),
-                    str(f, "label", name),
+                    labels(f.get("label"), name),
                     num(f, "min", 0),
                     num(f, "max", defaultMax(type)),
                     (int) num(f, "scale", 0),
@@ -51,7 +52,7 @@ public final class DefinitionLoader {
                 str(m, "id", null),
                 (int) num(m, "version", 1),
                 (int) num(m, "code", -1),
-                str(m, "title", null),
+                labels(m.get("title"), str(m, "id", null)),
                 str(m, "xmlName", null),
                 str(m, "cotType", "a-u-G"),
                 str(m, "pointField", null),
@@ -65,6 +66,19 @@ public final class DefinitionLoader {
         int n;
         while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
         return fromJson(new String(out.toByteArray(), StandardCharsets.UTF_8));
+    }
+
+    /** A label is either a plain string (English) or an object of language tag to text. */
+    private static Map<String, String> labels(Object v, String dflt) {
+        Map<String, String> out = new LinkedHashMap<>();
+        if (v instanceof Map) {
+            for (Map.Entry<?, ?> e : ((Map<?, ?>) v).entrySet()) out.put(e.getKey().toString(), e.getValue().toString());
+        } else if (v != null) {
+            out.put("en", v.toString());
+        } else if (dflt != null) {
+            out.put("en", dflt);
+        }
+        return out;
     }
 
     private static long defaultMax(FieldType t) {

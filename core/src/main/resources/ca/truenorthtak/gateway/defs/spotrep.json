@@ -2,27 +2,121 @@
   "id": "SPOTREP",
   "version": 1,
   "code": 2,
-  "title": "Spot Report, SALUTE format (representative)",
+  "title": {
+    "en": "Spot Report, SALUTE format (representative)",
+    "fr": "Compte rendu ponctuel, format SALUTE (représentatif)"
+  },
   "xmlName": "SpotReport",
   "cotType": "a-u-G",
   "pointField": "location",
   "defaultPrecedence": "PRIORITY",
   "fields": [
-    { "name": "size", "set": "SIZE", "xml": "ObservedQuantity", "type": "INT", "min": 0, "max": 9999,
-      "label": "Size - number of personnel or vehicles" },
-    { "name": "activity", "set": "ACTY", "xml": "ActivityDescriptionText", "type": "TEXT", "max": 60,
-      "label": "Activity" },
-    { "name": "location", "set": "LOCN", "xml": "ObservedLocation", "type": "POSITION",
-      "label": "Location" },
-    { "name": "affiliation", "set": "LOCN", "xml": "AffiliationCode", "type": "ENUM",
-      "label": "Assessed affiliation",
-      "codes": [ {"code": "H", "label": "Hostile"}, {"code": "S", "label": "Suspect"},
-                 {"code": "U", "label": "Unknown"}, {"code": "N", "label": "Neutral"} ] },
-    { "name": "unit", "set": "UNIT", "xml": "UnitIdentificationText", "type": "TEXT", "max": 40, "required": false,
-      "label": "Unit or identification" },
-    { "name": "observedTime", "set": "TIME", "xml": "ObservationDateTime", "type": "DTG",
-      "label": "Time observed" },
-    { "name": "equipment", "set": "EQPT", "xml": "EquipmentDescriptionText", "type": "TEXT", "max": 60, "required": false,
-      "label": "Equipment" }
+    {
+      "name": "size",
+      "set": "SIZE",
+      "xml": "ObservedQuantity",
+      "type": "INT",
+      "min": 0,
+      "max": 9999,
+      "label": {
+        "en": "Size - number of personnel or vehicles",
+        "fr": "Taille - nombre de personnes ou de véhicules"
+      }
+    },
+    {
+      "name": "activity",
+      "set": "ACTY",
+      "xml": "ActivityDescriptionText",
+      "type": "TEXT",
+      "max": 60,
+      "label": {
+        "en": "Activity",
+        "fr": "Activité"
+      }
+    },
+    {
+      "name": "location",
+      "set": "LOCN",
+      "xml": "ObservedLocation",
+      "type": "POSITION",
+      "label": {
+        "en": "Location",
+        "fr": "Emplacement"
+      }
+    },
+    {
+      "name": "affiliation",
+      "set": "LOCN",
+      "xml": "AffiliationCode",
+      "type": "ENUM",
+      "label": {
+        "en": "Assessed affiliation",
+        "fr": "Affiliation évaluée"
+      },
+      "codes": [
+        {
+          "code": "H",
+          "label": {
+            "en": "Hostile",
+            "fr": "Hostile"
+          }
+        },
+        {
+          "code": "S",
+          "label": {
+            "en": "Suspect",
+            "fr": "Suspect"
+          }
+        },
+        {
+          "code": "U",
+          "label": {
+            "en": "Unknown",
+            "fr": "Inconnu"
+          }
+        },
+        {
+          "code": "N",
+          "label": {
+            "en": "Neutral",
+            "fr": "Neutre"
+          }
+        }
+      ]
+    },
+    {
+      "name": "unit",
+      "set": "UNIT",
+      "xml": "UnitIdentificationText",
+      "type": "TEXT",
+      "max": 40,
+      "required": false,
+      "label": {
+        "en": "Unit or identification",
+        "fr": "Unité ou identification"
+      }
+    },
+    {
+      "name": "observedTime",
+      "set": "TIME",
+      "xml": "ObservationDateTime",
+      "type": "DTG",
+      "label": {
+        "en": "Time observed",
+        "fr": "Heure d'observation"
+      }
+    },
+    {
+      "name": "equipment",
+      "set": "EQPT",
+      "xml": "EquipmentDescriptionText",
+      "type": "TEXT",
+      "max": 60,
+      "required": false,
+      "label": {
+        "en": "Equipment",
+        "fr": "Équipement"
+      }
+    }
   ]
 }

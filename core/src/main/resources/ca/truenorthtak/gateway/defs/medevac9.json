@@ -2,50 +2,351 @@
   "id": "MEDEVAC9",
   "version": 1,
   "code": 1,
-  "title": "9-Line MEDEVAC Request (representative)",
+  "title": {
+    "en": "9-Line MEDEVAC Request (representative)",
+    "fr": "Demande d'évacuation sanitaire en 9 lignes (représentative)"
+  },
   "xmlName": "MedicalEvacuationRequest",
   "cotType": "b-r-f-h-c",
   "pointField": "pickupLocation",
   "defaultPrecedence": "IMMEDIATE",
   "fields": [
-    { "name": "pickupLocation", "set": "L1", "xml": "PickupLocation", "type": "POSITION",
-      "label": "Line 1 - Pickup site location" },
-    { "name": "radioFrequency", "set": "L2", "xml": "RadioFrequencyValue", "type": "DECIMAL",
-      "scale": 3, "min": 0, "max": 9999, "label": "Line 2 - Radio frequency (MHz)" },
-    { "name": "callsign", "set": "L2", "xml": "CallSignText", "type": "TEXT", "max": 12,
-      "label": "Line 2 - Call sign and suffix" },
-    { "name": "patientsByPrecedence", "set": "L3", "xml": "PatientPrecedenceCount", "type": "COUNTS", "max": 31,
-      "label": "Line 3 - Patients by precedence",
-      "codes": [ {"code": "A", "label": "Urgent"}, {"code": "B", "label": "Urgent surgical"},
-                 {"code": "C", "label": "Priority"}, {"code": "D", "label": "Routine"},
-                 {"code": "E", "label": "Convenience"} ] },
-    { "name": "specialEquipment", "set": "L4", "xml": "SpecialEquipmentCode", "type": "ENUM_SET",
-      "label": "Line 4 - Special equipment required",
-      "codes": [ {"code": "A", "label": "None"}, {"code": "B", "label": "Hoist"},
-                 {"code": "C", "label": "Extraction equipment"}, {"code": "D", "label": "Ventilator"} ] },
-    { "name": "patientsByType", "set": "L5", "xml": "PatientTypeCount", "type": "COUNTS", "max": 31,
-      "label": "Line 5 - Patients by type",
-      "codes": [ {"code": "L", "label": "Litter"}, {"code": "A", "label": "Ambulatory"} ] },
-    { "name": "pickupSecurity", "set": "L6", "xml": "PickupSiteSecurityCode", "type": "ENUM",
-      "label": "Line 6 - Security at pickup site",
-      "codes": [ {"code": "N", "label": "No enemy troops in area"}, {"code": "P", "label": "Possible enemy troops"},
-                 {"code": "E", "label": "Enemy troops in area, approach with caution"},
-                 {"code": "X", "label": "Enemy troops in area, armed escort required"} ] },
-    { "name": "markingMethod", "set": "L7", "xml": "PickupSiteMarkingCode", "type": "ENUM",
-      "label": "Line 7 - Method of marking pickup site",
-      "codes": [ {"code": "A", "label": "Panels"}, {"code": "B", "label": "Pyrotechnic signal"},
-                 {"code": "C", "label": "Smoke signal"}, {"code": "D", "label": "None"},
-                 {"code": "E", "label": "Other"} ] },
-    { "name": "patientsByStatus", "set": "L8", "xml": "PatientStatusCount", "type": "COUNTS", "max": 31,
-      "label": "Line 8 - Patient nationality and status",
-      "codes": [ {"code": "A", "label": "Friendly military"}, {"code": "B", "label": "Friendly civilian"},
-                 {"code": "C", "label": "Other military"}, {"code": "D", "label": "Other civilian"},
-                 {"code": "E", "label": "Detainee"} ] },
-    { "name": "cbrnContamination", "set": "L9", "xml": "CBRNContaminationCode", "type": "ENUM", "required": false,
-      "label": "Line 9 - CBRN contamination",
-      "codes": [ {"code": "C", "label": "Chemical"}, {"code": "B", "label": "Biological"},
-                 {"code": "R", "label": "Radiological"}, {"code": "N", "label": "Nuclear"} ] },
-    { "name": "remarks", "set": "RMKS", "xml": "RemarksText", "type": "TEXT", "max": 80, "required": false,
-      "label": "Remarks" }
+    {
+      "name": "pickupLocation",
+      "set": "L1",
+      "xml": "PickupLocation",
+      "type": "POSITION",
+      "label": {
+        "en": "Line 1 - Pickup site location",
+        "fr": "Ligne 1 - Emplacement du site de ramassage"
+      }
+    },
+    {
+      "name": "radioFrequency",
+      "set": "L2",
+      "xml": "RadioFrequencyValue",
+      "type": "DECIMAL",
+      "scale": 3,
+      "min": 0,
+      "max": 9999,
+      "label": {
+        "en": "Line 2 - Radio frequency (MHz)",
+        "fr": "Ligne 2 - Fréquence radio (MHz)"
+      }
+    },
+    {
+      "name": "callsign",
+      "set": "L2",
+      "xml": "CallSignText",
+      "type": "TEXT",
+      "max": 12,
+      "label": {
+        "en": "Line 2 - Call sign and suffix",
+        "fr": "Ligne 2 - Indicatif d'appel et suffixe"
+      }
+    },
+    {
+      "name": "patientsByPrecedence",
+      "set": "L3",
+      "xml": "PatientPrecedenceCount",
+      "type": "COUNTS",
+      "max": 31,
+      "label": {
+        "en": "Line 3 - Patients by precedence",
+        "fr": "Ligne 3 - Patients par priorité"
+      },
+      "codes": [
+        {
+          "code": "A",
+          "label": {
+            "en": "Urgent",
+            "fr": "Urgent"
+          }
+        },
+        {
+          "code": "B",
+          "label": {
+            "en": "Urgent surgical",
+            "fr": "Urgent chirurgical"
+          }
+        },
+        {
+          "code": "C",
+          "label": {
+            "en": "Priority",
+            "fr": "Prioritaire"
+          }
+        },
+        {
+          "code": "D",
+          "label": {
+            "en": "Routine",
+            "fr": "Routine"
+          }
+        },
+        {
+          "code": "E",
+          "label": {
+            "en": "Convenience",
+            "fr": "De commodité"
+          }
+        }
+      ]
+    },
+    {
+      "name": "specialEquipment",
+      "set": "L4",
+      "xml": "SpecialEquipmentCode",
+      "type": "ENUM_SET",
+      "label": {
+        "en": "Line 4 - Special equipment required",
+        "fr": "Ligne 4 - Équipement spécial requis"
+      },
+      "codes": [
+        {
+          "code": "A",
+          "label": {
+            "en": "None",
+            "fr": "Aucun"
+          }
+        },
+        {
+          "code": "B",
+          "label": {
+            "en": "Hoist",
+            "fr": "Treuil"
+          }
+        },
+        {
+          "code": "C",
+          "label": {
+            "en": "Extraction equipment",
+            "fr": "Équipement d'extraction"
+          }
+        },
+        {
+          "code": "D",
+          "label": {
+            "en": "Ventilator",
+            "fr": "Respirateur"
+          }
+        }
+      ]
+    },
+    {
+      "name": "patientsByType",
+      "set": "L5",
+      "xml": "PatientTypeCount",
+      "type": "COUNTS",
+      "max": 31,
+      "label": {
+        "en": "Line 5 - Patients by type",
+        "fr": "Ligne 5 - Patients par type"
+      },
+      "codes": [
+        {
+          "code": "L",
+          "label": {
+            "en": "Litter",
+            "fr": "Sur civière"
+          }
+        },
+        {
+          "code": "A",
+          "label": {
+            "en": "Ambulatory",
+            "fr": "Ambulatoire"
+          }
+        }
+      ]
+    },
+    {
+      "name": "pickupSecurity",
+      "set": "L6",
+      "xml": "PickupSiteSecurityCode",
+      "type": "ENUM",
+      "label": {
+        "en": "Line 6 - Security at pickup site",
+        "fr": "Ligne 6 - Sécurité au site de ramassage"
+      },
+      "codes": [
+        {
+          "code": "N",
+          "label": {
+            "en": "No enemy troops in area",
+            "fr": "Aucune troupe ennemie dans le secteur"
+          }
+        },
+        {
+          "code": "P",
+          "label": {
+            "en": "Possible enemy troops",
+            "fr": "Troupes ennemies possibles"
+          }
+        },
+        {
+          "code": "E",
+          "label": {
+            "en": "Enemy troops in area, approach with caution",
+            "fr": "Troupes ennemies dans le secteur, approcher avec prudence"
+          }
+        },
+        {
+          "code": "X",
+          "label": {
+            "en": "Enemy troops in area, armed escort required",
+            "fr": "Troupes ennemies dans le secteur, escorte armée requise"
+          }
+        }
+      ]
+    },
+    {
+      "name": "markingMethod",
+      "set": "L7",
+      "xml": "PickupSiteMarkingCode",
+      "type": "ENUM",
+      "label": {
+        "en": "Line 7 - Method of marking pickup site",
+        "fr": "Ligne 7 - Méthode de marquage du site de ramassage"
+      },
+      "codes": [
+        {
+          "code": "A",
+          "label": {
+            "en": "Panels",
+            "fr": "Panneaux"
+          }
+        },
+        {
+          "code": "B",
+          "label": {
+            "en": "Pyrotechnic signal",
+            "fr": "Signal pyrotechnique"
+          }
+        },
+        {
+          "code": "C",
+          "label": {
+            "en": "Smoke signal",
+            "fr": "Signal fumigène"
+          }
+        },
+        {
+          "code": "D",
+          "label": {
+            "en": "None",
+            "fr": "Aucune"
+          }
+        },
+        {
+          "code": "E",
+          "label": {
+            "en": "Other",
+            "fr": "Autre"
+          }
+        }
+      ]
+    },
+    {
+      "name": "patientsByStatus",
+      "set": "L8",
+      "xml": "PatientStatusCount",
+      "type": "COUNTS",
+      "max": 31,
+      "label": {
+        "en": "Line 8 - Patient nationality and status",
+        "fr": "Ligne 8 - Nationalité et statut des patients"
+      },
+      "codes": [
+        {
+          "code": "A",
+          "label": {
+            "en": "Friendly military",
+            "fr": "Militaire ami"
+          }
+        },
+        {
+          "code": "B",
+          "label": {
+            "en": "Friendly civilian",
+            "fr": "Civil ami"
+          }
+        },
+        {
+          "code": "C",
+          "label": {
+            "en": "Other military",
+            "fr": "Autre militaire"
+          }
+        },
+        {
+          "code": "D",
+          "label": {
+            "en": "Other civilian",
+            "fr": "Autre civil"
+          }
+        },
+        {
+          "code": "E",
+          "label": {
+            "en": "Detainee",
+            "fr": "Détenu"
+          }
+        }
+      ]
+    },
+    {
+      "name": "cbrnContamination",
+      "set": "L9",
+      "xml": "CBRNContaminationCode",
+      "type": "ENUM",
+      "required": false,
+      "label": {
+        "en": "Line 9 - CBRN contamination",
+        "fr": "Ligne 9 - Contamination CBRN"
+      },
+      "codes": [
+        {
+          "code": "C",
+          "label": {
+            "en": "Chemical",
+            "fr": "Chimique"
+          }
+        },
+        {
+          "code": "B",
+          "label": {
+            "en": "Biological",
+            "fr": "Biologique"
+          }
+        },
+        {
+          "code": "R",
+          "label": {
+            "en": "Radiological",
+            "fr": "Radiologique"
+          }
+        },
+        {
+          "code": "N",
+          "label": {
+            "en": "Nuclear",
+            "fr": "Nucléaire"
+          }
+        }
+      ]
+    },
+    {
+      "name": "remarks",
+      "set": "RMKS",
+      "xml": "RemarksText",
+      "type": "TEXT",
+      "max": 80,
+      "required": false,
+      "label": {
+        "en": "Remarks",
+        "fr": "Remarques"
+      }
+    }
   ]
 }
